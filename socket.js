@@ -8,7 +8,7 @@ var net = require('net');
 function Socket() 
 {
 	this.nickname = '';
-	this.site = '';
+	this.server = '';
 	this.channel = '';
 
 	this.buffer = '';
@@ -27,7 +27,7 @@ Socket.prototype.connect = function(conn)
 	var sock = net.Socket();
 
 	this.connection = conn;
-	this.socket = sock.connect(6667, this.site);
+	this.socket = sock.connect(6667, this.server);
 
 	this.socket.setKeepAlive(true);
 

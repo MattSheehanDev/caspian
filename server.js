@@ -12,7 +12,7 @@ var server = net.createServer(function(conn)
 
 	//Prompt to enter data.
 	conn.write('IRC Client : v.0.0.1\r\n'
-		+ 'Enter NickName: '
+		+ 'Enter Nickname: '
 		);
 
 
@@ -26,12 +26,12 @@ var server = net.createServer(function(conn)
 			{
 				socket.nickname = socket.buffer;
 
-				conn.write('Enter Site: ');
+				conn.write('Enter Server: ');
 			}
 
-			else if(!socket.site)
+			else if(!socket.server)
 			{
-				socket.site = socket.buffer;
+				socket.server = socket.buffer;
 
 				conn.write('Enter Channel: ');
 			}
@@ -63,7 +63,12 @@ var server = net.createServer(function(conn)
 	{
 		console.log(socket.nickname + ' closed.');
 		socket.open = false;
-		socket.socket.end();
+
+		//End socket if open
+		if(socket.socket)
+		{
+			socket.socket.end();
+		}
 	});
 
 
